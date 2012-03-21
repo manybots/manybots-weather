@@ -36,7 +36,7 @@ class WeatherWorker
     activity[:title] = "Weather conditions in TARGET: OBJECT"
     activity[:auto_title] = true
     activity[:actor] = {
-      displayName: 'Yahoo! Weather Observer',
+      displayName: 'Weather Observer',
       objectType: 'application',
       id: ManybotsWeather.app.url,
       url: ManybotsWeather.app.url,

@@ -1,6 +1,6 @@
 <div class="clearfix" style="margin-bottom: 20px;">
   <%= image_tag('manybots-weather/icon.png', :align => :left, :width => 40, :style=> 'margin-right: 10px;') %>
-  <h2>Yahoo! Weather Observer</h2>
+  <h2>Manybots Weather Observer</h2>
 </div>
 
 <%- @locations.each do |location| -%>
@@ -13,7 +13,7 @@
     </h4>
 
     <%- if @schedules and @schedules.keys.include?("import_manybots_weather_location_#{location.id}") -%> 
-      <p>Importing weather conditions in <strong><%= location.name %></strong> and repeat every 6 hours</p>
+      <p>Importing weather conditions in <strong><%= location.name %></strong> every 6 hours</p>
     <%- else -%>
       <p>There is an error importing this location, please restart</p>
     <%- end -%>
@@ -23,7 +23,7 @@
 <div class="card">
   <h4>Observe a City</h4>
 
-  <%= form_tag search_locations_path, :method => :get, :class => 'clearfix', :id => 'location_form' do %>
+  <%= form_tag locations_search_path, :method => :get, :class => 'clearfix', :id => 'location_form' do %>
     <label for="location_input"></label>
     <input type="text" name="location_input" placeholder="ex: Lisbon, Portugal" id="location_input">
     

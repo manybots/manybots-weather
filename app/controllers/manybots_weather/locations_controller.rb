@@ -5,6 +5,7 @@ module ManybotsWeather
     
     def index
       @locations = Location.where(user_id: current_user.id)
+      @schedules = ManybotsServer.queue.get_schedules
     end
     
     def search
