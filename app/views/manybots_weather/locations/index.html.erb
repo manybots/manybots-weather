@@ -1,0 +1,52 @@
+<div class="clearfix" style="margin-bottom: 20px;">
+  <%= image_tag('manybots-weather/icon.png', :align => :left, :width => 40, :style=> 'margin-right: 10px;') %>
+  <h2>Yahoo! Weather Observer</h2>
+</div>
+
+<%- @locations.each do |location| -%>
+  <div class="card">
+    <h4>
+      <%= location.name %> 
+      <span class="meta">
+        <%= link_to 'Delete', location_path(location.id), :method => :delete, :confirm => 'Are you sure?', :class => '' %>
+      </span>
+    </h4>
+
+    <%- if @schedules and @schedules.keys.include?("import_manybots_weather_location_#{location.id}") -%> 
+      <p>Importing weather conditions in <strong><%= location.name %></strong> and repeat every 6 hours</p>
+    <%- else -%>
+      <p>There is an error importing this location, please restart</p>
+    <%- end -%>
+  </div>
+<%- end -%>
+
+<div class="card">
+  <h4>Observe a City</h4>
+
+  <%= form_tag search_locations_path, :method => :get, :class => 'clearfix', :id => 'location_form' do %>
+    <label for="location_input"></label>
+    <input type="text" name="location_input" placeholder="ex: Lisbon, Portugal" id="location_input">
+    
+    <p class="" style="float: right; margin: 0 5px 0 0;">
+      <%= submit_tag 'Locate', :id => 'submit'%> 
+    </p>
+  <%- end -%>
+  
+  <div id="location_wrapper">
+  </div>
+    
+</div>
+
+
+  
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    $('#location_form').submit(function() {
+      $('#submit').attr('disabled', 'disabled');
+      $('#location_wrapper').load($(this).attr('action') + '?location=' + escape($('#location_input').val()), function() {
+        $('#submit').removeAttr('disabled');
+      });
+      return false;
+    });
+  });
+</script>
