@@ -10,7 +10,7 @@ Having the weather conditions on your Manybots account enables other apps to use
 
 You need the latest version of Manybots Local running on your system. Open your Terminal and `cd` into its' directory.
 
-First, require the gem: edit your `Gemfile`, add the following, and run `bundle install`
+First, require the gem: edit your `Botfile`, add the following, and run `bundle install`
 
 ```
 gem 'manybots-weather', :git => 'git://github.com/manybots/manybots-weather.git'
